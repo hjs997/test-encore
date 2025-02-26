@@ -13,4 +13,4 @@ RUN apk update &&\
     chmod +x main.go start.sh &&\
     go build -o app main.go
 
-CMD ["./app"]
+CMD ["./start.sh"]
