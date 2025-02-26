@@ -1,16 +1,13 @@
-FROM golang:1.20-alpine
+FROM golang:1.20
 
+# 设置工作目录
 WORKDIR /app
 
-COPY go.mod ./
-
-RUN go mod download
-
+# 复制所有文件到容器
 COPY . .
 
-RUN apk update &&\
-    apk add --no-cache openssl curl gcompat iproute2 &&\
-    chmod +x main.go start.sh &&\
-    go build -o app main.go
+# 赋予执行权限
+RUN chmod +x start.sh
 
+# 运行 start.sh
 CMD ["./start.sh"]
